@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+{% block title %} Home Page {%endblock%}
+{% block content %}
+<h1 id="id23">Hello  {{user.username}} !</h1>
+<div>
+
+<h2 class="head">Your Files:</h2>
+    {% if user_files %}
+        <ul class="no-bullets">
+            {% for file in user_files %}
+            {% if file.Upload_File %}
+                <h6> {{file.title}} </h6>
+                <li class="bullets">
+                       
+                        <a class="btn btn-warning" href="{{ file.Upload_File.url }}" target="_blank" role="button" >File</a>
+                        (Uploaded at: {{ file.uploaded_at }})
+                    
+                    
+                </li>
+                
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No files uploaded by You!</p>
+    {% endif %}
+
+    <h2 class="head">Your Images:</h2>
+    {% if user_images %}
+        <ul class="no-bullets">
+            {% for image in user_images %}
+            {% if image.Upload_Image %}
+            <h6> {{file.title}} </h6>
+                <li class="bullets">
+                        
+                        <img src="{{ image.Upload_Image.url }}" alt="{{ image.Upload_Image.name }}" height="100px" width="100px">
+                          (Uploaded at: {{ image.uploaded_at }})
+                    
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No images uploaded by You !</p>
+    {% endif %}
+</div>
+{% endblock %}
